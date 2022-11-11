@@ -1,16 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
-</head>
-<body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
+<html lang='en' dir='ltr'>
+  <head>
+    <!-- <link href='styles.css' type='text/css' rel='stylesheet'> -->
+    <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap" rel="stylesheet">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlook Hotel</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="overlook-header">Overlook Hotel</h1>
+      <button class='login-return-button'>Sign to Login Page</button>
+      <button class='dash-return-button hidden'>Return to Dashboard</button>
+    </header>
+    <main>
+      <section class="view login-view hidden">
 
-</body>
+      </section>
+      <section class='view home-view'>
+        <section class="greeting-container" id="greeting-container">
+
+        </section>
+        <section class="home-container" id="home-middle">
+
+        </section>
+        <section class="home-container" id="home-bottom">
+
+        </section>
+      </section>
+      <section class="view booking-view hidden">
+        
+      </section>
+    </main>
+    <script src="bundle.js"></script>
+  </body>
 </html>
