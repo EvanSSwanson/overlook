@@ -7,7 +7,7 @@ class Customer {
 
     assignBookings(bookings) {
         bookings.forEach(booking => {
-            if(booking.userID === this.id) {
+            if(booking.customerId === this.id) {
                 this.bookings.push(booking);
             };
         });
