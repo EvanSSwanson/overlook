@@ -37,17 +37,6 @@ function instantiateAllData() {
     });
 };
 
-// function instantiateCertainCustomer() {
-//     let userId = 14
-//     fetch(`http://localhost:3001/api/v1/customers/${userId}`)
-//     .then(response => response.json())
-//     .then(data => {
-//     currentCustomer = new Customer(data);
-//     renderDashboard(currentCustomer);
-//     })
-//     .catch(err => console.log(err))
-// };
-
 //QUERY SELECTORS
 const greeting = document.querySelector('.greeting');
 const loginReturnButton = document.querySelector('.login-return-button');
@@ -141,8 +130,8 @@ function renderCustomerBookings() {
                 <p class="booking-date">${room.date}</p>
             </div>
             <p class="booking-type">${room.roomInfo.type}</p>
-            <p class="booking-beds">${room.roomInfo.numBeds} ${bed}, ${room.roomInfo.bedSize}</p>
-            <p class="booking-cost">Per Night: $${room.roomInfo.costPerNight}</p>
+            <p class="booking-beds">${room.roomInfo.numBeds} ${room.roomInfo.bedSize} ${bed}</p>
+            <p class="booking-cost">Per Night: $${(Math.round(room.roomInfo.costPerNight * 100) / 100).toFixed(2)}</p>
         </li>`
     }).join('');
     pastBookings.innerHTML = '';
@@ -159,12 +148,12 @@ function renderCustomerBookings() {
                 <p class="booking-date">${room.date}</p>
             </div>
             <p class="booking-type">${room.roomInfo.type}</p>
-            <p class="booking-beds">${room.roomInfo.numBeds} ${bed}, ${room.roomInfo.bedSize}</p>
-            <p class="booking-cost">Per Night: $${room.roomInfo.costPerNight}</p>
+            <p class="booking-beds">${room.roomInfo.numBeds} ${room.roomInfo.bedSize} ${bed}</p>
+            <p class="booking-cost">Per Night: $${(Math.round(room.roomInfo.costPerNight * 100) / 100).toFixed(2)}</p>
         </li>`
     }).join('');
     totalBill.innerText = '';
-    totalBill.innerText = `Total Bill: $${pastRooms.reduce((acc, room) => {
-        return acc + room.roomInfo.costPerNight;
-    }, 0)}`;
+    totalBill.innerText = `Total Bill: $${(Math.round(pastRooms.reduce((acc, room) => {
+        return acc + room.roomInfo.costPerNight
+    }, 0) * 100) / 100).toFixed(2)}`;
 };
