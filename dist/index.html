@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang='en' dir='ltr'>
+<html lang="en" dir="ltr">
   <head>
     <!-- <link href='styles.css' type='text/css' rel='stylesheet'> -->
     <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap" rel="stylesheet">
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,27 +11,161 @@
   </head>
   <body>
     <header>
-      <h1 class="overlook-header">Overlook Hotel</h1>
-      <button class='login-return-button'>Sign to Login Page</button>
-      <button class='dash-return-button hidden'>Return to Dashboard</button>
+      <h1 class="overlook-header">The Overlook Hotel</h1>
+      <button class="login-return-button">Return to Login Page</button>
+      <button class="dash-return-button hidden">Return to Dashboard</button>
     </header>
     <main>
       <section class="view login-view hidden">
 
       </section>
-      <section class='view home-view'>
+      <section class="view home-view">
         <section class="greeting-container" id="greeting-container">
-
+          <section class="pineapple-container" id="pineapple-container-left">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+          </section>
+          <section class="central-container" id="central-container">
+            <h2 class="greeting"></h2>
+            <p class="reminder">We can't wait to see you!</p>
+          </section>
+          <section class="pineapple-container" id="pineapple-container-right">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+          </section>
         </section>
         <section class="home-container" id="home-middle">
-
+          <h2 class="upcoming-bookings-title">Upcoming Bookings</h2>
+          <ul class="upcoming-bookings">
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+          </ul>
+          <div class="section-footer">
+            <button class="book-button">Make Next Booking</button>
+          </div>
         </section>
         <section class="home-container" id="home-bottom">
-
+          <h2 class="past-bookings-title">Past Bookings</h2>
+          <ul class="past-bookings">
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+          </ul>
+          <div class="section-footer">
+            <p class="total-bill">Total: $0.05</p>
+          </div>
+        </section>
         </section>
       </section>
       <section class="view booking-view hidden">
-        
+
       </section>
     </main>
     <script src="bundle.js"></script>
