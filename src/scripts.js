@@ -131,7 +131,7 @@ function renderCustomerBookings() {
             </div>
             <p class="booking-type">${room.roomInfo.type}</p>
             <p class="booking-beds">${room.roomInfo.numBeds} ${room.roomInfo.bedSize} ${bed}</p>
-            <p class="booking-cost">Per Night: $${(Math.round(room.roomInfo.costPerNight * 100) / 100).toFixed(2)}</p>
+            <p class="booking-cost">per night: $${(Math.round(room.roomInfo.costPerNight * 100) / 100).toFixed(2)}</p>
         </li>`
     }).join('');
     pastBookings.innerHTML = '';
@@ -149,7 +149,7 @@ function renderCustomerBookings() {
             </div>
             <p class="booking-type">${room.roomInfo.type}</p>
             <p class="booking-beds">${room.roomInfo.numBeds} ${room.roomInfo.bedSize} ${bed}</p>
-            <p class="booking-cost">Per Night: $${(Math.round(room.roomInfo.costPerNight * 100) / 100).toFixed(2)}</p>
+            <p class="booking-cost">per night: $${(Math.round(room.roomInfo.costPerNight * 100) / 100).toFixed(2)}</p>
         </li>`
     }).join('');
     totalBill.innerText = '';
