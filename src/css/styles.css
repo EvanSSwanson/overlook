@@ -22,6 +22,8 @@ header {
 }
 
 .overlook-header {
+  -webkit-text-stroke: .1vw black;
+  color: #F9F9F7;
   font-size: 4vw;
   margin-right: 4vw;
 }
@@ -29,6 +31,12 @@ header {
 .login-return-button, .dash-return-button {
   height: 3.5vw;
   width: 16vw;
+  font-size: 1.35vw;
+  background-color: #F9F9F7;
+  border-style: solid;
+  border-color: #000000;
+  border-width: .25vw;
+  border-radius: 5vw;
 }
 
 .greeting-container {
@@ -88,7 +96,7 @@ header {
 }
 
 .home-container {
-  border-top: .1vw;
+  border-top: .125vw;
   border-top-style: solid;
   border-color: #E8E8E8;
 }
@@ -116,13 +124,39 @@ header {
   max-height: 20vw;
   margin: .75vw;
   font-size: 1vw;
-  color: #353431;
+  color: #000000;
   text-align: center;
   max-width: 26vw;
   border-style: solid;
   border-color: #B8462B;
-  border-width: .5vw;
+  border-width: .25vw;
   border-radius: .2vw;
+}
+
+.card-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 102%;
+  padding-top: 0;
+  background-color: #B8462B;
+  color: #F9F9F7;
+  border-top-style: solid;
+  border-color: #B8462B;
+  border-top-width: .5vw;
+  border-radius: .2vw;
+}
+
+.booking-room {
+  background: rgba(0, 0, 0, .6);
+  border-radius: 1vw;
+  text-align: center;
+  border-left: 1vw;
+  border-right: 1vw;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, .001);
+  color: #F9F9F7;
+  width: 60%;
 }
 
 .section-footer {
@@ -130,6 +164,19 @@ header {
   justify-content: center;
   align-items: center;
   margin-bottom: 2vw;
+}
+
+.book-button {
+  margin-top: 1.5vw;
+  color: #F9F9F7;
+  height: 3.5vw;
+  width: 16vw;
+  font-size: 1.35vw;
+  background-color: #B8462B;
+  border-style: solid;
+  border-color: #000000;
+  border-width: .25vw;
+  border-radius: 5vw;
 }
 
 
