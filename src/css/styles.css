@@ -1,6 +1,6 @@
 *{
   box-sizing: border-box;
-  font-family: 'Reem Kufi Ink';
+  font-family: 'Asap Condensed';
   /* border: 1px;
   border-style: solid;
   border-color: #000000; */
@@ -24,7 +24,8 @@ header {
 .overlook-header {
   -webkit-text-stroke: .1vw black;
   color: #F9F9F7;
-  font-size: 4vw;
+  font-family: 'Akaya Telivigala';
+  font-size: 5vw;
   margin-right: 4vw;
 }
 
@@ -73,6 +74,7 @@ header {
   background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
   text-align: center;
+  font-family: 'Akaya Telivigala';
   border-left: 1vw;
   border-right: 1vw;
   border-style: solid;
@@ -86,6 +88,7 @@ header {
   background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
   text-align: center;
+  font-family: 'Akaya Telivigala';
   border-left: 1vw;
   border-right: 1vw;
   border-style: solid;
@@ -98,7 +101,13 @@ header {
 .home-container {
   border-top: .125vw;
   border-top-style: solid;
-  border-color: #E8E8E8;
+  border-top-color: #E8E8E8;
+  border-left: 5.5vw;
+  border-left-style: solid;
+  border-left-color: #E8E8E8;
+  border-right: 5.5vw;
+  border-right-style: solid;
+  border-right-color: #E8E8E8;
 }
 
 .upcoming-bookings, .past-bookings {
@@ -111,6 +120,7 @@ header {
 }
 
 .upcoming-bookings-title, .past-bookings-title {
+  font-family: 'Akaya Telivigala';
   margin-left: 6.85vw;
 }
 
@@ -135,6 +145,7 @@ header {
 
 .card-top {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 102%;
@@ -147,7 +158,7 @@ header {
   border-radius: .2vw;
 }
 
-.booking-room {
+.booking-room, .booking-date {
   background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
   text-align: center;
@@ -159,11 +170,14 @@ header {
   width: 60%;
 }
 
+.booking-cost {
+  margin-bottom: 2vw;
+}
+
 .section-footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2vw;
 }
 
 .book-button {
@@ -179,6 +193,14 @@ header {
   border-radius: 5vw;
 }
 
+.total-bill {
+  font-size: 2vw;
+  font-family: 'Akaya Telivigala';
+}
+
+.buffer-space {
+  height: 2vw;
+}
 
 .hidden {
   display: none;
