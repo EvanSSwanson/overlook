@@ -18,7 +18,7 @@ let allRooms;
 let currentCustomer;
 
 //API CALLS
-let gatherData = (url) => {
+function gatherData(url) {
     return fetch(url)
         .then(response => response.json())
         .catch(err => console.log(err))
