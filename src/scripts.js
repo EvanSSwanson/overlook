@@ -44,13 +44,13 @@ const upcomingBookings = document.querySelector('.upcoming-bookings');
 const pastBookings = document.querySelector('.past-bookings');
 const availableRooms = document.querySelector('.available-rooms');
 const totalBill = document.querySelector('.total-bill');
-const testButton = document.querySelector('.test-button');
+const submitButton = document.querySelector('.submit-button');
 const vacancy = document.querySelector('.vacancy');
 
 //GLOBAL EVENT LISTENERS
 window.addEventListener('load', instantiateAllData);
 loginReturnButton.addEventListener('click', loadPage);
-testButton.addEventListener('click', renderPossibleBookings);
+submitButton.addEventListener('click', renderPossibleBookings);
 
 //FUNCTIONS
 function setData() {

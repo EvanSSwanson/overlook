@@ -12,6 +12,10 @@ body {
   margin: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 header {
   display: flex;
   justify-content: space-around;
@@ -99,6 +103,11 @@ header {
   color: #F9F9F7;
 }
 
+.date-picker-container {
+  display: flex;
+  align-items: center;
+}
+
 .vacancy {
   background: rgba(255, 255, 255, 0.758);
   border-radius: 1vw;
@@ -113,18 +122,24 @@ header {
   color: #000000;
 }
 
-.month-picker, .day-picker, .year-picker {
+.submit-button {
+  margin-left: 1vw;
+  height: 2.5vw;
+  width: 10vw;
+  font-size: 1.25vw;
   background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
-  text-align: center;
-  font-family: 'Akaya Telivigala';
   border-left: 1vw;
   border-right: 1vw;
   border-style: solid;
   border-color: rgba(0, 0, 0, .001);
-  font-size: 2.5vw;
   margin-bottom: 4vw;
   color: #F9F9F7;
+}
+
+.submit-button:hover {
+  background: rgba(255, 255, 255, 0.758);
+  color: #000000;
 }
 
 .home-container, .available-rooms-container {
