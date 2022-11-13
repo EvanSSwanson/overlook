@@ -66,6 +66,7 @@ header {
   flex-direction: column;
   align-items: center;
   background-image: url("https://www.stanleyhotel.com/uploads/9/8/6/9/98696462/thestanleyhotel_orig.jpg");
+  height: 19vw;
   width: 80%;
   border-radius: .2vw;
 }
@@ -85,6 +86,34 @@ header {
 }
 
 .reminder {
+  background: rgba(0, 0, 0, .6);
+  border-radius: 1vw;
+  text-align: center;
+  font-family: 'Akaya Telivigala';
+  border-left: 1vw;
+  border-right: 1vw;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, .001);
+  font-size: 2.5vw;
+  margin-bottom: 4vw;
+  color: #F9F9F7;
+}
+
+.vacancy {
+  background: rgba(255, 255, 255, 0.758);
+  border-radius: 1vw;
+  text-align: center;
+  font-family: 'Akaya Telivigala';
+  border-left: 1vw;
+  border-right: 1vw;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, .001);
+  font-size: 2.5vw;
+  margin-bottom: 4vw;
+  color: #000000;
+}
+
+.month-picker, .day-picker, .year-picker {
   background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
   text-align: center;
@@ -135,7 +164,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 55%;
+  width: 60%;
   margin-right: 6.85vw;
 }
 
