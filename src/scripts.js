@@ -16,6 +16,7 @@ let allCustomers;
 let allBookings;
 let allRooms;
 let currentCustomer;
+let possibleRooms;
 
 //API CALLS
 function gatherData(url) {
@@ -49,6 +50,7 @@ const bookButton = document.querySelector('.book-button');
 const availableRooms = document.querySelector('.available-rooms');
 const totalBill = document.querySelector('.total-bill');
 const submitButton = document.querySelector('.submit-button');
+const centralDropdownContainer = document.querySelector('.central-dropdown-container');
 const vacancy = document.querySelector('.vacancy');
 
 //GLOBAL EVENT LISTENERS
@@ -177,7 +179,7 @@ function renderPossibleBookings() {
         };
         return acc;
     }, []);
-    const possibleRooms = allRooms.reduce((acc, room) => {
+    possibleRooms = allRooms.reduce((acc, room) => {
         if(!thatDaysBookedRooms.includes(room.number)) {
             acc.push(room);
         };
@@ -192,15 +194,19 @@ function renderPossibleBookings() {
             bed = 'beds'
         };
         return `<li class="booking-card">
-            <button class="card-button" id="card-button-room-${room.number}"><div class="booking-card-top">
-                <h3 class="booking-room">Room ${room.number}</h3>
-                <p class="booking-date">${chosenDate}</p>
+            <button class="card-button" id="button-${room.number}"><div class="booking-card-top" id="top-${room.number}">
+                <h3 class="booking-room" id="room-${room.number}">Room ${room.number}</h3>
+                <p class="booking-date" id="date-${room.number}">${chosenDate}</p>
             </div>
-            <p class="booking-type">${room.type}</p>
-            <p class="booking-beds">${room.numBeds} ${room.bedSize} ${bed}</p>
-            <p class="booking-cost">per night: $${(Math.round(room.costPerNight * 100) / 100).toFixed(2)}</p></button>
+            <p class="booking-type" id="type-${room.number}">${room.type}</p>
+            <p class="booking-beds" id="beds-${room.number}">${room.numBeds} ${room.bedSize} ${bed}</p>
+            <p class="booking-cost" id="cost-${room.number}">per night: $${(Math.round(room.costPerNight * 100) / 100).toFixed(2)}</p></button>
         </li>`
     }).join('');
+    const cardButton = document.querySelectorAll('.card-button', '.booking-card-top', '.booking-room', '.booking-date', '.booking-type', 'booking-beds', '.bookinh-cost');
+    cardButton.forEach(button => {
+        button.addEventListener('click', selectRoom)
+    })
 };
 
 function convertVacancyDate() {
@@ -220,6 +226,40 @@ function convertVacancyDate() {
         };
 };
 
+function selectRoom(event) {
+    const targetId = event.target.id.split('-');
+    const pickedRoom = possibleRooms.find(room => room.number === parseInt(targetId[1]));
+    centralDropdownContainer.innerHTML = '';
+    centralDropdownContainer.innerHTML = `<h2 class="chosen-message">You have chosen Room ${pickedRoom.number} on ${convertVacancyDate()}</h2>
+    <div class="confirm-container">
+        <p class="confirm-message">Click here to confirm your stay:</p>
+        <button class="confirm-button">Confirm Reservation</button>
+    </div>
+    <div class="backtrack-container">
+        <p class="backtrack-message">Click here to choose a different date:</p>
+        <button class="backtrack-button">Pick Another Date</button>
+    </div>`
+    const confirmButton = document.querySelector('.confirm-button');
+    const backtrackButton = document.querySelector('.backtrack-button');
+    confirmButton.addEventListener('click', reserveRoom);
+    backtrackButton.addEventListener('click', showDatePicker);
+    console.log(possibleRooms);
+    console.log(pickedRoom);
+};
+
+function reserveRoom() {
+
+};
+
+function showDatePicker() {
+    centralDropdownContainer.innerHTML = '';
+    centralDropdownContainer.innerHTML = `<h2 class="choose-message">Choose a Date to Find Available Rooms:</h2>
+    <div class="date-picker-container">
+        <input type="date" class="vacancy" id="vacancy" name="vacancy">
+        <button class="submit-button">Find Rooms</button>
+    </div>`
+};
+
 //This function below is currently just to keep things straight in my own head. IT WILL NOT BE IN THE FINAL COPY!
 function findFullyBooked() {
     const firstArray = allBookings.reduce((acc, booking) => {
@@ -234,7 +274,9 @@ function findFullyBooked() {
     console.log('firstArray: ', firstArray)
 };
 
-//PAGE VIEW FUNCTIONS
+
+
+//TOGGLE HIDDEN FUNCTIONS
 function showBookingView() {
     bookingView.classList.remove('hidden');
     loginReturnButton.classList.add('hidden');
@@ -247,4 +289,8 @@ function showDashView() {
     dashReturnButton.classList.add('hidden');
     bookingView.classList.add('hidden');
     loginReturnButton.classList.remove('hidden');
+};
+
+function showConfirmationView() {
+
 };
