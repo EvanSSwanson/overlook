@@ -214,7 +214,7 @@ function convertVacancyDate() {
         };
 };
 
-
+//This function below is currently just to keep things straight in my own head; IT WILL NOT BE IN THE FINAL COPY!
 function findFullyBooked() {
     const firstArray = allBookings.reduce((acc, booking) => {
         const hhh = booking.americanDate;
