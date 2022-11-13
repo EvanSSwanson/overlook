@@ -18,7 +18,7 @@ let allRooms;
 let currentCustomer;
 
 //API CALLS
-function gatherData(url) {
+let gatherData = (url) => {
     return fetch(url)
         .then(response => response.json())
         .catch(err => console.log(err))
@@ -37,12 +37,22 @@ function instantiateAllData() {
     });
 };
 
+// function instantiateCertainCustomer() {
+//     let userId = 14
+//     fetch(`http://localhost:3001/api/v1/customers/${userId}`)
+//     .then(response => response.json())
+//     .then(data => {
+//     currentCustomer = new Customer(data);
+//     renderDashboard(currentCustomer);
+//     })
+//     .catch(err => console.log(err))
+// };
+
 //QUERY SELECTORS
 const greeting = document.querySelector('.greeting');
 const loginReturnButton = document.querySelector('.login-return-button');
 const upcomingBookings = document.querySelector('.upcoming-bookings');
 const pastBookings = document.querySelector('.past-bookings');
-const availableRooms = document.querySelector('.available-rooms');
 const totalBill = document.querySelector('.total-bill');
 const submitButton = document.querySelector('.submit-button');
 const vacancy = document.querySelector('.vacancy');
@@ -102,7 +112,6 @@ function renderDashboard(customer) {
 };
 
 function renderCustomerBookings() {
-    findFullyBooked();
     let upcomingRooms = [];
     let pastRooms = [];
     allRooms.forEach(room => {
@@ -135,8 +144,8 @@ function renderCustomerBookings() {
                 <p class="booking-date">${room.date}</p>
             </div>
             <p class="booking-type">${room.roomInfo.type}</p>
-            <p class="booking-beds">${room.roomInfo.numBeds} ${room.roomInfo.bedSize} ${bed}</p>
-            <p class="booking-cost">per night: $${(Math.round(room.roomInfo.costPerNight * 100) / 100).toFixed(2)}</p>
+            <p class="booking-beds">${room.roomInfo.numBeds} ${bed}, ${room.roomInfo.bedSize}</p>
+            <p class="booking-cost">Per Night: $${room.roomInfo.costPerNight}</p>
         </li>`
     }).join('');
     pastBookings.innerHTML = '';
@@ -153,14 +162,14 @@ function renderCustomerBookings() {
                 <p class="booking-date">${room.date}</p>
             </div>
             <p class="booking-type">${room.roomInfo.type}</p>
-            <p class="booking-beds">${room.roomInfo.numBeds} ${room.roomInfo.bedSize} ${bed}</p>
-            <p class="booking-cost">per night: $${(Math.round(room.roomInfo.costPerNight * 100) / 100).toFixed(2)}</p>
+            <p class="booking-beds">${room.roomInfo.numBeds} ${bed}, ${room.roomInfo.bedSize}</p>
+            <p class="booking-cost">Per Night: $${room.roomInfo.costPerNight}</p>
         </li>`
     }).join('');
     totalBill.innerText = '';
-    totalBill.innerText = `Total Bill: $${(Math.round(pastRooms.reduce((acc, room) => {
-        return acc + room.roomInfo.costPerNight
-    }, 0) * 100) / 100).toFixed(2)}`;
+    totalBill.innerText = `Total Bill: $${pastRooms.reduce((acc, room) => {
+        return acc + room.roomInfo.costPerNight;
+    }, 0)}`;
 };
 
 function renderPossibleBookings() {
