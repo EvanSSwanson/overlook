@@ -44,6 +44,11 @@ header {
   border-radius: 5vw;
 }
 
+.login-return-button:hover, .dash-return-button:hover, .filter-button:hover {
+  background-color: #535353;
+  color: #F9F9F7;
+}
+
 .greeting-container, .dropdown-container {
   display: flex;
   justify-content: center;
@@ -201,16 +206,25 @@ header {
   align-items: center;
   list-style: none;
   flex-basis: 16%;
-  max-height: 20vw;
+  height:19vw;
   margin: .75vw;
-  font-size: 1vw;
   color: #000000;
   text-align: center;
-  max-width: 26vw;
   border-style: solid;
   border-color: #B8462B;
   border-width: .25vw;
   border-radius: .2vw;
+}
+
+.card-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: none;
 }
 
 .card-top {
@@ -228,6 +242,26 @@ header {
   border-radius: .2vw;
 }
 
+.booking-card-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 108%;
+  margin-top: -.15vw;
+  padding-top: 0;
+  background-color: #B8462B;
+  color: #F9F9F7;
+  border-top-style: solid;
+  border-color: #B8462B;
+  border-top-width: .5vw;
+  border-radius: .2vw;
+}
+
+.booking-room, .booking-date, .booking-type, .booking-beds, .booking-cost {
+  font-size: 1.1vw;
+}
+
 .booking-room, .booking-date {
   background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
@@ -239,6 +273,8 @@ header {
   color: #F9F9F7;
   width: 60%;
 }
+
+
 
 .booking-cost {
   margin-bottom: 2vw;
@@ -261,6 +297,10 @@ header {
   border-color: #000000;
   border-width: .25vw;
   border-radius: 5vw;
+}
+
+.book-button:hover {
+  background-color: #892D17;
 }
 
 .total-bill {

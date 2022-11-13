@@ -38,10 +38,14 @@ function instantiateAllData() {
 };
 
 //QUERY SELECTORS
+const dashView = document.querySelector('.home-view');
+const bookingView = document.querySelector('.booking-view');
 const greeting = document.querySelector('.greeting');
 const loginReturnButton = document.querySelector('.login-return-button');
+const dashReturnButton = document.querySelector('.dash-return-button');
 const upcomingBookings = document.querySelector('.upcoming-bookings');
 const pastBookings = document.querySelector('.past-bookings');
+const bookButton = document.querySelector('.book-button');
 const availableRooms = document.querySelector('.available-rooms');
 const totalBill = document.querySelector('.total-bill');
 const submitButton = document.querySelector('.submit-button');
@@ -50,6 +54,8 @@ const vacancy = document.querySelector('.vacancy');
 //GLOBAL EVENT LISTENERS
 window.addEventListener('load', instantiateAllData);
 loginReturnButton.addEventListener('click', loadPage);
+dashReturnButton.addEventListener('click', showDashView);
+bookButton.addEventListener('click', showBookingView);
 submitButton.addEventListener('click', renderPossibleBookings);
 
 //FUNCTIONS
@@ -186,13 +192,13 @@ function renderPossibleBookings() {
             bed = 'beds'
         };
         return `<li class="booking-card">
-            <div class="card-top">
+            <button class="card-button" id="card-button-room-${room.number}"><div class="booking-card-top">
                 <h3 class="booking-room">Room ${room.number}</h3>
                 <p class="booking-date">${chosenDate}</p>
             </div>
             <p class="booking-type">${room.type}</p>
             <p class="booking-beds">${room.numBeds} ${room.bedSize} ${bed}</p>
-            <p class="booking-cost">per night: $${(Math.round(room.costPerNight * 100) / 100).toFixed(2)}</p>
+            <p class="booking-cost">per night: $${(Math.round(room.costPerNight * 100) / 100).toFixed(2)}</p></button>
         </li>`
     }).join('');
 };
@@ -226,4 +232,19 @@ function findFullyBooked() {
     }, []);
     
     console.log('firstArray: ', firstArray)
-}
+};
+
+//PAGE VIEW FUNCTIONS
+function showBookingView() {
+    bookingView.classList.remove('hidden');
+    loginReturnButton.classList.add('hidden');
+    dashView.classList.add('hidden');
+    dashReturnButton.classList.remove('hidden');
+};
+
+function showDashView() {
+    dashView.classList.remove('hidden');
+    dashReturnButton.classList.add('hidden');
+    bookingView.classList.add('hidden');
+    loginReturnButton.classList.remove('hidden');
+};
