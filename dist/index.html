@@ -19,7 +19,7 @@
       <section class="view login-view hidden">
 
       </section>
-      <section class="view home-view">
+      <section class="view home-view hidden">
         <section class="greeting-container" id="greeting-container">
           <section class="pineapple-container" id="pineapple-container-left">
             <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
@@ -166,8 +166,61 @@
         </section>
         </section>
       </section>
-      <section class="view booking-view hidden">
-
+      <section class="view booking-view">
+        <section class="dropdown-container">
+          <section class="pineapple-container" id="pineapple-container-left">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+          </section>
+          <section class="central-dropdown-container" id="central-dropdown-container">
+            <h2 class="greeting">Choose a Date to Find Available Rooms:</h2>
+            <div class="date-picker-container">
+                <input type="date" class="vacancy" id="vacancy" name="vacancy">
+                <button class="test-button">test button</button>
+            </div>
+          </section>
+          <section class="pineapple-container" id="pineapple-container-right">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+          </section>
+        </section>
+        <section class="available-rooms-container">
+          <div class="available-rooms-top-bar">
+            <h2 class="available-rooms-title">Available Rooms</h2>
+            <div class="button-bar">
+              <button class="filter-button" id="single-button">single room</button>
+              <button class="filter-button" id="junior-button">junior suite</button>
+              <button class="filter-button" id="suite-button">suite</button>
+              <button class="filter-button" id="presidential-button">presidential suite</button>
+            </div>
+          </div>
+          <ul class="available-rooms">
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+            <li class="booking-card">
+              <div class="card-top">
+                <h3 class="booking-room">Room 8</h3>
+              </div>
+              <p class="booking-type">Suite</p>
+              <p class="booking-beds">2 Beds, Full</p>
+              <p class="booking-cost">Per Night: $3</p>
+            </li>
+          </ul>
+        </section>
       </section>
     </main>
     <script src="bundle.js"></script>
