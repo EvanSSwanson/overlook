@@ -40,7 +40,7 @@ header {
   border-radius: 5vw;
 }
 
-.greeting-container, .dropdown-container {
+.greeting-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,12 +61,11 @@ header {
   width: 9vw;
 }
 
-.central-container, .central-dropdown-container {
+.central-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-image: url("https://www.stanleyhotel.com/uploads/9/8/6/9/98696462/thestanleyhotel_orig.jpg");
-  height: 19vw;
   width: 80%;
   border-radius: .2vw;
 }
@@ -99,35 +98,7 @@ header {
   color: #F9F9F7;
 }
 
-.vacancy {
-  background: rgba(255, 255, 255, 0.758);
-  border-radius: 1vw;
-  text-align: center;
-  font-family: 'Akaya Telivigala';
-  border-left: 1vw;
-  border-right: 1vw;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, .001);
-  font-size: 2.5vw;
-  margin-bottom: 4vw;
-  color: #000000;
-}
-
-.month-picker, .day-picker, .year-picker {
-  background: rgba(0, 0, 0, .6);
-  border-radius: 1vw;
-  text-align: center;
-  font-family: 'Akaya Telivigala';
-  border-left: 1vw;
-  border-right: 1vw;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, .001);
-  font-size: 2.5vw;
-  margin-bottom: 4vw;
-  color: #F9F9F7;
-}
-
-.home-container, .available-rooms-container {
+.home-container {
   border-top: .125vw;
   border-top-style: solid;
   border-top-color: #E8E8E8;
@@ -139,13 +110,7 @@ header {
   border-right-color: #E8E8E8;
 }
 
-.available-rooms-top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.upcoming-bookings, .past-bookings, .available-rooms {
+.upcoming-bookings, .past-bookings {
   display: flex;
   justify-content: center;
   align-content: flex-start;
@@ -154,29 +119,9 @@ header {
   padding-left: 0;
 }
 
-.upcoming-bookings-title, .past-bookings-title, .available-rooms-title {
+.upcoming-bookings-title, .past-bookings-title {
   font-family: 'Akaya Telivigala';
-  font-size: 1.75;
   margin-left: 6.85vw;
-}
-
-.button-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 60%;
-  margin-right: 6.85vw;
-}
-
-.filter-button {
-  height: 2vw;
-  width: 10vw;
-  font-size: 1vw;
-  background-color: #F9F9F7;
-  border-style: solid;
-  border-color: #000000;
-  border-width: .25vw;
-  border-radius: 5vw;
 }
 
 .booking-card {
