@@ -54,10 +54,13 @@ const loginReturnButton = document.querySelector('.login-return-button');
 const upcomingBookings = document.querySelector('.upcoming-bookings');
 const pastBookings = document.querySelector('.past-bookings');
 const totalBill = document.querySelector('.total-bill');
+const submitButton = document.querySelector('.submit-button');
+const vacancy = document.querySelector('.vacancy');
 
 //GLOBAL EVENT LISTENERS
 window.addEventListener('load', instantiateAllData);
-loginReturnButton.addEventListener('click', loadPage)
+loginReturnButton.addEventListener('click', loadPage);
+submitButton.addEventListener('click', renderPossibleBookings);
 
 //FUNCTIONS
 function setData() {
@@ -168,3 +171,68 @@ function renderCustomerBookings() {
         return acc + room.roomInfo.costPerNight;
     }, 0)}`;
 };
+
+function renderPossibleBookings() {
+    let chosenDate = convertVacancyDate();
+    const thatDaysBookedRooms = allBookings.reduce((acc, booking) => {
+        if(booking.americanDate === chosenDate) {
+            acc.push(booking.roomNumber);
+        };
+        return acc;
+    }, []);
+    const possibleRooms = allRooms.reduce((acc, room) => {
+        if(!thatDaysBookedRooms.includes(room.number)) {
+            acc.push(room);
+        };
+        return acc;
+    }, []);
+    availableRooms.innerHTML = '';
+    availableRooms.innerHTML = possibleRooms.map(room => {
+        let bed;
+        if(room.numBeds === 1) {
+            bed = 'bed'
+        } else {
+            bed = 'beds'
+        };
+        return `<li class="booking-card">
+            <div class="card-top">
+                <h3 class="booking-room">Room ${room.number}</h3>
+                <p class="booking-date">${chosenDate}</p>
+            </div>
+            <p class="booking-type">${room.type}</p>
+            <p class="booking-beds">${room.numBeds} ${room.bedSize} ${bed}</p>
+            <p class="booking-cost">per night: $${(Math.round(room.costPerNight * 100) / 100).toFixed(2)}</p>
+        </li>`
+    }).join('');
+};
+
+function convertVacancyDate() {
+    let backslashVacancyDate = vacancy.value.split('-');
+        const date = new Date(backslashVacancyDate.join('/'));
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let year = date.getFullYear();
+        if(month < 10 && day < 10) {
+            return `0${month}/0${day}/${year}`
+        } else if(month < 10 && day > 9) {
+            return `0${month}/${day}/${year}`
+        } else if(month > 9 && day < 10) {
+            return `${month}/0${day}/${year}`
+        } else {
+            return `${month}/${day}/${year}`
+        };
+};
+
+//This function below is currently just to keep things straight in my own head. IT WILL NOT BE IN THE FINAL COPY!
+function findFullyBooked() {
+    const firstArray = allBookings.reduce((acc, booking) => {
+        const hhh = booking.americanDate;
+        if(acc[hhh] === undefined) {
+            acc[hhh] = [];
+        };
+        acc[hhh].push(booking);
+        return acc;
+    }, []);
+    
+    console.log('firstArray: ', firstArray)
+}
