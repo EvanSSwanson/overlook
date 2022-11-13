@@ -17,6 +17,7 @@ let allBookings;
 let allRooms;
 let currentCustomer;
 let possibleRooms;
+let pickedRoom;
 
 //API CALLS
 function gatherData(url) {
@@ -38,6 +39,24 @@ function instantiateAllData() {
     });
 };
 
+function postBooking(customer, date, room) {
+    const dateArray = date.value.split('-');
+    console.log(customer.id, dateArray.join('/'), room.number);
+    fetch('http://localhost:3001/api/v1/bookings', {
+      method: 'POST',
+      body: JSON.stringify({
+        "userID": customer.id,
+        "date": dateArray.join('/'),
+        "roomNumber": room.number
+    }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .catch(err => console.log(err));
+};
+
 //QUERY SELECTORS
 const dashView = document.querySelector('.home-view');
 const bookingView = document.querySelector('.booking-view');
@@ -56,7 +75,7 @@ const vacancy = document.querySelector('.vacancy');
 //GLOBAL EVENT LISTENERS
 window.addEventListener('load', instantiateAllData);
 loginReturnButton.addEventListener('click', loadPage);
-dashReturnButton.addEventListener('click', showDashView);
+dashReturnButton.addEventListener('click', loadDashView);
 bookButton.addEventListener('click', showBookingView);
 submitButton.addEventListener('click', renderPossibleBookings);
 
@@ -228,7 +247,7 @@ function convertVacancyDate() {
 
 function selectRoom(event) {
     const targetId = event.target.id.split('-');
-    const pickedRoom = possibleRooms.find(room => room.number === parseInt(targetId[1]));
+    pickedRoom = possibleRooms.find(room => room.number === parseInt(targetId[1]));
     centralDropdownContainer.innerHTML = '';
     centralDropdownContainer.innerHTML = `<h2 class="chosen-message">You have chosen Room ${pickedRoom.number} on ${convertVacancyDate()}</h2>
     <div class="confirm-container">
@@ -248,8 +267,22 @@ function selectRoom(event) {
 };
 
 function reserveRoom() {
-
+    postBooking(currentCustomer, vacancy, pickedRoom);
+    //add it
+    //if the post returns fine without errors...
+    centralDropdownContainer.innerHTML = '';
+    centralDropdownContainer.innerHTML = `<h2 class="success-message">Success! Room ${pickedRoom.number} will be ready for you on ${convertVacancyDate()}.</h2>
+        <button class="book-another-button">Book Another Room</button>`
+    const bookAnotherButton = document.querySelector('.book-another-button');
+    bookAnotherButton.addEventListener('click', showDatePicker);
+    instantiateAllData();
 };
+
+function loadDashView() {
+    setData();
+    loadPage();
+    showDashView();
+}
 
 function showDatePicker() {
     centralDropdownContainer.innerHTML = '';
