@@ -17,8 +17,9 @@ let allBookings;
 let allRooms;
 let currentCustomer;
 let possibleRooms;
-let filteredRooms;
 let pickedRoom;
+let vacancyMicro;
+let filteredSelection = 'all';
 
 //API CALLS
 function gatherData(url) {
@@ -73,6 +74,11 @@ const submitButton = document.querySelector('.submit-button');
 const centralDropdownContainer = document.querySelector('.central-dropdown-container');
 const manipulatedCentralContainer = document.querySelector('.manipulated-central-container');
 const vacancy = document.querySelector('.vacancy');
+const allButton = document.querySelector('#all');
+const singleButton = document.querySelector('#single');
+const juniorButton = document.querySelector('#junior');
+const suiteButton = document.querySelector('#suite');
+const residentialButton = document.querySelector('#residential');
 
 //GLOBAL EVENT LISTENERS
 window.addEventListener('load', instantiateAllData);
@@ -80,6 +86,11 @@ loginReturnButton.addEventListener('click', loadPage);
 dashReturnButton.addEventListener('click', loadDashView);
 bookButton.addEventListener('click', showBookingView);
 submitButton.addEventListener('click', renderPossibleBookings);
+allButton.addEventListener('click', showFilteredRooms);
+singleButton.addEventListener('click', showFilteredRooms);
+juniorButton.addEventListener('click', showFilteredRooms);
+suiteButton.addEventListener('click', showFilteredRooms);
+residentialButton.addEventListener('click', showFilteredRooms);
 
 //FUNCTIONS
 function setData() {
@@ -140,18 +151,26 @@ function renderCustomerBookings() {
                 let obj = {};
                 obj['roomInfo'] = room;
                 obj['date'] = booking.americanDate;
+                obj['micro'] = booking.micro;
                 upcomingRooms.push(obj);
             };
             if(booking.roomNumber === room.number && booking.micro < new Date().getTime()) {
                 let obj = {};
                 obj['roomInfo'] = room;
                 obj['date'] = booking.americanDate;
+                obj['micro'] = booking.micro;
                 pastRooms.push(obj);
             };
         });
     });
+    const sortedUpcomings = upcomingRooms.sort((a, b) => {
+        return a['micro'] - b['micro'];
+    });
+    const sortedPasts = pastRooms.sort((a, b) => {
+        return b['micro'] - a['micro'];
+    });
     upcomingBookings.innerHTML = '';
-    upcomingBookings.innerHTML = upcomingRooms.map(room => {
+    upcomingBookings.innerHTML = sortedUpcomings.map(room => {
         let bed;
         if(room.roomInfo.numBeds === 1) {
             bed = 'bed'
@@ -169,7 +188,7 @@ function renderCustomerBookings() {
         </li>`
     }).join('');
     pastBookings.innerHTML = '';
-    pastBookings.innerHTML = pastRooms.map(room => {
+    pastBookings.innerHTML = sortedPasts.map(room => {
         let bed;
         if(room.roomInfo.numBeds === 1) {
             bed = 'bed'
@@ -192,42 +211,60 @@ function renderCustomerBookings() {
     }, 0) * 100) / 100).toFixed(2)}`;
 };
 
+function showFilteredRooms(event) {
+    filteredSelection = event.target.id;
+    renderPossibleBookings();
+};
+
 function renderPossibleBookings() {
     let chosenDate = convertVacancyDate();
-    const thatDaysBookedRooms = allBookings.reduce((acc, booking) => {
-        if(booking.americanDate === chosenDate) {
-            acc.push(booking.roomNumber);
-        };
-        return acc;
-    }, []);
-    possibleRooms = allRooms.reduce((acc, room) => {
-        if(!thatDaysBookedRooms.includes(room.number)) {
-            acc.push(room);
-        };
-        return acc;
-    }, []);
-    availableRooms.innerHTML = '';
-    availableRooms.innerHTML = possibleRooms.map(room => {
-        let bed;
-        if(room.numBeds === 1) {
-            bed = 'bed'
+    if(vacancyMicro < Date.now()) {
+       showTooEarlyMessage();
+    } else {
+        const thatDaysBookedRooms = allBookings.reduce((acc, booking) => {
+            if(booking.americanDate === chosenDate) {
+                acc.push(booking.roomNumber);
+            };
+            return acc;
+        }, []);
+        if(filteredSelection === 'all') {
+            possibleRooms = allRooms.reduce((acc, room) => {
+                if(!thatDaysBookedRooms.includes(room.number)) {
+                    acc.push(room);
+                };
+                return acc;
+            }, []);
         } else {
-            bed = 'beds'
+            possibleRooms = allRooms.reduce((acc, room) => {
+                if(!thatDaysBookedRooms.includes(room.number) && room.type.split(' ')[0] === filteredSelection) {
+                    acc.push(room);
+                };
+                return acc;
+            }, []);
         };
-        return `<li class="booking-card">
-            <button class="card-button" id="button-${room.number}"><div class="booking-card-top" id="top-${room.number}">
-                <h3 class="booking-room" id="room-${room.number}">Room ${room.number}</h3>
-                <p class="booking-date" id="date-${room.number}">${chosenDate}</p>
-            </div>
-            <p class="booking-type" id="type-${room.number}">${room.type}</p>
-            <p class="booking-beds" id="beds-${room.number}">${room.numBeds} ${room.bedSize} ${bed}</p>
-            <p class="booking-cost" id="cost-${room.number}">per night: $${(Math.round(room.costPerNight * 100) / 100).toFixed(2)}</p></button>
-        </li>`
-    }).join('');
-    const cardButton = document.querySelectorAll('.card-button', '.booking-card-top', '.booking-room', '.booking-date', '.booking-type', 'booking-beds', '.bookinh-cost');
-    cardButton.forEach(button => {
-        button.addEventListener('click', selectRoom)
-    })
+        availableRooms.innerHTML = '';
+        availableRooms.innerHTML = possibleRooms.map(room => {
+            let bed;
+            if(room.numBeds === 1) {
+                bed = 'bed'
+            } else {
+                bed = 'beds'
+            };
+            return `<li class="booking-card">
+                <button class="card-button" id="button-${room.number}"><div class="booking-card-top" id="top-${room.number}">
+                    <h3 class="booking-room" id="room-${room.number}">Room ${room.number}</h3>
+                    <p class="booking-date" id="date-${room.number}">${chosenDate}</p>
+                </div>
+                <p class="booking-type" id="type-${room.number}">${room.type}</p>
+                <p class="booking-beds" id="beds-${room.number}">${room.numBeds} ${room.bedSize} ${bed}</p>
+                <p class="booking-cost" id="cost-${room.number}">per night: $${(Math.round(room.costPerNight * 100) / 100).toFixed(2)}</p></button>
+            </li>`
+        }).join('');
+        const cardButton = document.querySelectorAll('.card-button', '.booking-card-top', '.booking-room', '.booking-date', '.booking-type', 'booking-beds', '.bookinh-cost');
+        cardButton.forEach(button => {
+            button.addEventListener('click', selectRoom)
+        });
+    };
 };
 
 function convertVacancyDate() {
@@ -236,6 +273,7 @@ function convertVacancyDate() {
         let month = date.getMonth() + 1;
         let day = date.getDate();
         let year = date.getFullYear();
+        vacancyMicro = date.getTime();
         if(month < 10 && day < 10) {
             return `0${month}/0${day}/${year}`
         } else if(month < 10 && day > 9) {
@@ -280,6 +318,17 @@ function loadDashView() {
     setData();
     loadPage();
     showDashView();
+};
+
+function showTooEarlyMessage() {
+    availableRooms.innerHTML = '';
+    manipulatedCentralContainer.innerHTML = '';
+    manipulatedCentralContainer.innerHTML = `<h2 class="too-early-message">Please pick a *future* day</h2>
+    <button class="backtrack-button">Pick Another Date</button>`;
+    const backtrackButton = document.querySelector('.backtrack-button');
+    backtrackButton.addEventListener('click', showDatePicker);
+    centralDropdownContainer.classList.add('hidden');
+    manipulatedCentralContainer.classList.remove('hidden');
 }
 
 function showDatePicker() {

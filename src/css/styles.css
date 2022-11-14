@@ -80,7 +80,7 @@ header {
   border-radius: .2vw;
 }
 
-.greeting, .chosen-message, .choose-message {
+.greeting, .chosen-message, .choose-message, .too-early-message {
   background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
   text-align: center;
