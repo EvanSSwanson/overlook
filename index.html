@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Asap+Condensed&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Overlook Hotel</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="overlook-header">The Overlook Hotel</h1>
+      <button class="login-return-button hidden">Sign Out</button>
+      <button class="dash-return-button hidden">Return to Dashboard</button>
+    </header>
+    <main>
+      <section class="view login-view">
+        <div class="login-prompt-container">
+          <img class="mini-pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+          <h2 class="login-prompt">Please login to view your bookings:</h2>
+          <img class="mini-pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+        </div>
+        <div class="login-container">
+          <div class="username-container">
+            <p class="username-title">Username:</p>
+            <input class="username-input" type="text">
+          </div>
+          <div class="password-container">
+            <p class="password-title">Password:</p>
+            <input class="password-input" type="password">
+          </div>
+          <button class="login-button">Login</button>
+        </div>
+      </section>
+      <section class="view home-view hidden">
+        <section class="greeting-container" id="greeting-container">
+          <section class="pineapple-container" id="pineapple-container-left">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+          </section>
+          <section class="central-container" id="central-container">
+            <h2 class="greeting"></h2>
+            <p class="reminder">We can't wait to see you!</p>
+          </section>
+          <section class="pineapple-container" id="pineapple-container-right">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+          </section>
+        </section>
+        <section class="home-container" id="home-middle">
+          <h2 class="upcoming-bookings-title">Upcoming Bookings</h2>
+          <ul class="upcoming-bookings">
+          </ul>
+          <div class="section-footer">
+            <button class="book-button">Make Next Booking</button>
+          </div>
+          <div class="buffer-space"></div>
+        </section>
+        <section class="home-container" id="home-bottom">
+          <h2 class="past-bookings-title">Past Bookings</h2>
+          <ul class="past-bookings">
+          </ul>
+          <div class="section-footer">
+            <p class="total-bill">Total Bill: $0.05</p>
+          </div>
+          <div class="buffer-space"></div>
+        </section>
+        </section>
+      </section>
+      <section class="view booking-view hidden">
+        <section class="dropdown-container">
+          <section class="pineapple-container" id="pineapple-container-left">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+          </section>
+          <section class="central-dropdown-container" id="central-dropdown-container">
+            <h2 class="choose-message">Choose a Date to Find Available Rooms:</h2>
+            <div class="date-picker-container">
+                <input type="date" class="vacancy" id="vacancy" name="vacancy">
+                <button class="submit-button">Find Rooms</button>
+            </div>
+          </section>
+          <section class="manipulated-central-container hidden">
+          </section>
+          <section class="pineapple-container" id="pineapple-container-right">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+            <img class="pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+          </section>
+        </section>
+        <section class="available-rooms-container">
+          <div class="available-rooms-top-bar">
+            <h2 class="available-rooms-title">Available Rooms</h2>
+            <div class="button-bar">
+              <button class="filter-button" id="all">all rooms</button>
+              <button class="filter-button" id="single">single room</button>
+              <button class="filter-button" id="junior">junior suite</button>
+              <button class="filter-button" id="suite">suite</button>
+              <button class="filter-button" id="residential">residential suite</button>
+            </div>
+          </div>
+          <ul class="available-rooms">
+          </ul>
+        </section>
+      </section>
+    </main>
+    <script src="bundle.js"></script>
+  </body>
+</html>
