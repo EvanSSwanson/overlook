@@ -20,6 +20,7 @@ let possibleRooms;
 let pickedRoom;
 let vacancyMicro;
 let filteredSelection = 'all';
+let tempRoom;
 
 //API CALLS
 function gatherData(url) {
@@ -126,7 +127,7 @@ function getAllRooms(data) {
 };
 
 function loadPage() {
-    let userId = 14 - 1;
+    let userId = 22 - 1;
     currentCustomer = allCustomers[userId];
     renderDashboard(currentCustomer);
     console.log('allCustomers: ', allCustomers);
@@ -144,6 +145,9 @@ function renderDashboard(customer) {
 function renderCustomerBookings() {
     findFullyBooked();
     let upcomingRooms = [];
+    if(tempRoom !== undefined) {
+        upcomingRooms.push(tempRoom);
+    };
     let pastRooms = [];
     allRooms.forEach(room => {
         return currentCustomer.bookings.forEach(booking => {
@@ -169,6 +173,8 @@ function renderCustomerBookings() {
     const sortedPasts = pastRooms.sort((a, b) => {
         return b['micro'] - a['micro'];
     });
+    console.log('tempRoom: ', tempRoom)
+    console.log('sortedUpcomings: ', sortedUpcomings);
     upcomingBookings.innerHTML = '';
     upcomingBookings.innerHTML = sortedUpcomings.map(room => {
         let bed;
@@ -218,9 +224,9 @@ function showFilteredRooms(event) {
 
 function renderPossibleBookings() {
     let chosenDate = convertVacancyDate();
-    if(vacancyMicro < Date.now()) {
-       showTooEarlyMessage();
-    } else {
+    // if(vacancyMicro < Date.now()) {
+    //    showTooEarlyMessage();
+    // } else {
         const thatDaysBookedRooms = allBookings.reduce((acc, booking) => {
             if(booking.americanDate === chosenDate) {
                 acc.push(booking.roomNumber);
@@ -241,6 +247,11 @@ function renderPossibleBookings() {
                 };
                 return acc;
             }, []);
+        };
+        if(possibleRooms.length === 0) {
+            apologizeProfusely();
+        } else {
+            showDatePicker();
         };
         availableRooms.innerHTML = '';
         availableRooms.innerHTML = possibleRooms.map(room => {
@@ -264,7 +275,7 @@ function renderPossibleBookings() {
         cardButton.forEach(button => {
             button.addEventListener('click', selectRoom)
         });
-    };
+    //};
 };
 
 function convertVacancyDate() {
@@ -304,6 +315,10 @@ function selectRoom(event) {
 
 function reserveRoom() {
     postBooking(currentCustomer, vacancy, pickedRoom);
+    tempRoom = {};
+    tempRoom['roomInfo'] = pickedRoom;
+    tempRoom['date'] = convertVacancyDate();
+    tempRoom['micro'] = vacancyMicro;
     //add it
     //if the post returns fine without errors...
     manipulatedCentralContainer.innerHTML = '';
@@ -315,7 +330,6 @@ function reserveRoom() {
 };
 
 function loadDashView() {
-    setData();
     loadPage();
     showDashView();
 };
@@ -329,7 +343,17 @@ function showTooEarlyMessage() {
     backtrackButton.addEventListener('click', showDatePicker);
     centralDropdownContainer.classList.add('hidden');
     manipulatedCentralContainer.classList.remove('hidden');
-}
+};
+
+function apologizeProfusely() {
+    manipulatedCentralContainer.innerHTML = '';
+    manipulatedCentralContainer.innerHTML = `<h2 class="apology-message">im so sorry bro you gotta forgive me bro please but theres no rooms available bro forgive me im so sorry bro please pick another room dont be mad at me bro please</h2>
+    <button class="backtrack-button">Pick Another Date</button>`;
+    const backtrackButton = document.querySelector('.backtrack-button');
+    backtrackButton.addEventListener('click', showDatePicker);
+    centralDropdownContainer.classList.add('hidden');
+    manipulatedCentralContainer.classList.remove('hidden');
+};
 
 function showDatePicker() {
     manipulatedCentralContainer.innerHTML = '';

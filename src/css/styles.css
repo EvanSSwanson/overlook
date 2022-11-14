@@ -30,12 +30,12 @@ header {
   color: #F9F9F7;
   font-family: 'Akaya Telivigala';
   font-size: 5vw;
-  margin-right: 4vw;
 }
 
 .login-return-button, .dash-return-button {
   height: 3.5vw;
   width: 16vw;
+  margin-left: 4vw;
   font-size: 1.35vw;
   background-color: #F9F9F7;
   border-style: solid;
@@ -80,7 +80,7 @@ header {
   border-radius: .2vw;
 }
 
-.greeting, .chosen-message, .choose-message, .too-early-message {
+.greeting, .chosen-message, .success-message, .choose-message, .too-early-message, .apology-message {
   background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
   text-align: center;
@@ -92,6 +92,10 @@ header {
   font-size: 3vw;
   margin-top: 4vw;
   color: #F9F9F7;
+}
+
+.apology-message {
+  margin-top: 2vw;
 }
 
 .chosen-message {
