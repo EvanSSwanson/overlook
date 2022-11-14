@@ -61,7 +61,6 @@ function postBooking(customer, date, room) {
 //QUERY SELECTORS
 const usernameInput = document.querySelector('.username-input');
 const passwordInput = document.querySelector('.password-input');
-const loginButton = document.querySelector('.login-button');
 const loginPromptContainer = document.querySelector('.login-prompt-container');
 const loginView = document.querySelector('.login-view');
 const dashView = document.querySelector('.home-view');
@@ -71,18 +70,19 @@ const loginReturnButton = document.querySelector('.login-return-button');
 const dashReturnButton = document.querySelector('.dash-return-button');
 const upcomingBookings = document.querySelector('.upcoming-bookings');
 const pastBookings = document.querySelector('.past-bookings');
-const bookButton = document.querySelector('.book-button');
 const availableRooms = document.querySelector('.available-rooms');
 const totalBill = document.querySelector('.total-bill');
-const submitButton = document.querySelector('.submit-button');
 const centralDropdownContainer = document.querySelector('.central-dropdown-container');
 const manipulatedCentralContainer = document.querySelector('.manipulated-central-container');
 const vacancy = document.querySelector('.vacancy');
+const loginButton = document.querySelector('.login-button');
+const submitButton = document.querySelector('.submit-button');
 const allButton = document.querySelector('#all');
 const singleButton = document.querySelector('#single');
 const juniorButton = document.querySelector('#junior');
 const suiteButton = document.querySelector('#suite');
 const residentialButton = document.querySelector('#residential');
+const bookButton = document.querySelector('.book-button');
 
 //GLOBAL EVENT LISTENERS
 window.addEventListener('load', instantiateAllData);
@@ -147,10 +147,6 @@ function loadPage() {
     const loginPosition = loginId - 1;
     currentCustomer = allCustomers[loginPosition];
     renderDashboard(currentCustomer);
-    console.log('allCustomers: ', allCustomers);
-    console.log('allBookings: ', allBookings);
-    console.log('allRooms: ', allRooms);
-    console.log('currentCustomer.bookings: ', currentCustomer.bookings);
     showDashView();
 };
 
@@ -161,7 +157,6 @@ function renderDashboard(customer) {
 };
 
 function renderCustomerBookings() {
-    findFullyBooked();
     let upcomingRooms = [];
     if(tempRoom !== undefined) {
         upcomingRooms.push(tempRoom);
@@ -235,11 +230,6 @@ function renderCustomerBookings() {
     }, 0) * 100) / 100).toFixed(2)}`;
 };
 
-function showFilteredRooms(event) {
-    filteredSelection = event.target.id;
-    renderPossibleBookings();
-};
-
 function renderPossibleBookings() {
     let chosenDate = convertVacancyDate();
     if(vacancyMicro < Date.now()) {
@@ -296,6 +286,11 @@ function renderPossibleBookings() {
             button.addEventListener('click', selectRoom)
         });
     };
+};
+
+function showFilteredRooms(event) {
+    filteredSelection = event.target.id;
+    renderPossibleBookings();
 };
 
 function convertVacancyDate() {
@@ -382,20 +377,6 @@ function showDatePicker() {
     </div>`
     manipulatedCentralContainer.classList.add('hidden');
     centralDropdownContainer.classList.remove('hidden');
-};
-
-//This function below is currently just to keep things straight in my own head. IT WILL NOT BE IN THE FINAL COPY!
-function findFullyBooked() {
-    const firstArray = allBookings.reduce((acc, booking) => {
-        const hhh = booking.americanDate;
-        if(acc[hhh] === undefined) {
-            acc[hhh] = [];
-        };
-        acc[hhh].push(booking);
-        return acc;
-    }, []);
-    
-    console.log('firstArray: ', firstArray)
 };
 
 //TOGGLE HIDDEN FUNCTIONS
