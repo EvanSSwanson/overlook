@@ -9,6 +9,7 @@ import Booking from './classes/Booking.js';
 console.log('This is the JavaScript entry file - your code begins here.');
 
 //GLOBAL VARIABLES
+let loginId;
 let customersData;
 let roomsData;
 let bookingsData;
@@ -61,6 +62,11 @@ function postBooking(customer, date, room) {
 };
 
 //QUERY SELECTORS
+const usernameInput = document.querySelector('.username-input');
+const passwordInput = document.querySelector('.password-input');
+const loginButton = document.querySelector('.login-button');
+const loginPromptContainer = document.querySelector('.login-prompt-container');
+const loginView = document.querySelector('.login-view');
 const dashView = document.querySelector('.home-view');
 const bookingView = document.querySelector('.booking-view');
 const greeting = document.querySelector('.greeting');
@@ -83,7 +89,8 @@ const residentialButton = document.querySelector('#residential');
 
 //GLOBAL EVENT LISTENERS
 window.addEventListener('load', instantiateAllData);
-loginReturnButton.addEventListener('click', loadPage);
+loginButton.addEventListener('click', checkLogin);
+loginReturnButton.addEventListener('click', showLoginView);
 dashReturnButton.addEventListener('click', loadDashView);
 bookButton.addEventListener('click', showBookingView);
 submitButton.addEventListener('click', renderPossibleBookings);
@@ -98,6 +105,19 @@ function setData() {
     getAllBookings(bookingsData);
     getAllCustomers(customersData);
     getAllRooms(roomsData);
+};
+
+function checkLogin() {
+    const customerCheck = usernameInput.value.slice(0, 8);
+    loginId = usernameInput.value.split('r')[1];
+    if(customerCheck === 'customer' && (loginId % 1 === 0) && (1 <= loginId <= 50) && passwordInput.value === 'overlook2021') {
+        loadPage();
+    } else {
+        loginPromptContainer.innerHTML = '';
+        loginPromptContainer.innerHTML = `<img class="mini-pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">
+        <h2 class="fail-prompt">Your inputs do not match any user profiles; please try again:</h2>
+        <img class="mini-pineapple" src="./images/pineapple-logo.png" alt="hospitality pineapple">`
+    };
 };
 
 function getAllBookings(data) {
@@ -127,13 +147,14 @@ function getAllRooms(data) {
 };
 
 function loadPage() {
-    let userId = 22 - 1;
-    currentCustomer = allCustomers[userId];
+    const loginPosition = loginId - 1;
+    currentCustomer = allCustomers[loginPosition];
     renderDashboard(currentCustomer);
     console.log('allCustomers: ', allCustomers);
     console.log('allBookings: ', allBookings);
     console.log('allRooms: ', allRooms);
     console.log('currentCustomer.bookings: ', currentCustomer.bookings);
+    showDashView();
 };
 
 function renderDashboard(customer) {
@@ -381,6 +402,14 @@ function findFullyBooked() {
 };
 
 //TOGGLE HIDDEN FUNCTIONS
+function showLoginView() {
+    usernameInput.value = '';
+    passwordInput.value = '';
+    dashView.classList.add('hidden');
+    loginReturnButton.classList.add('hidden');
+    loginView.classList.remove('hidden');
+}
+
 function showBookingView() {
     bookingView.classList.remove('hidden');
     loginReturnButton.classList.add('hidden');
@@ -393,4 +422,5 @@ function showDashView() {
     dashReturnButton.classList.add('hidden');
     bookingView.classList.add('hidden');
     loginReturnButton.classList.remove('hidden');
+    loginView.classList.add('hidden');
 };

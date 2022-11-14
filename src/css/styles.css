@@ -49,6 +49,51 @@ header {
   color: #F9F9F7;
 }
 
+.login-prompt-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mini-pineapple {
+  height: 5vw;
+  width: 5vw;
+}
+
+.login-prompt, .fail-prompt {
+  background: rgba(0, 0, 0, .6);
+  border-radius: 1vw;
+  text-align: center;
+  font-family: 'Akaya Telivigala';
+  border-left: 1vw;
+  border-right: 1vw;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, .001);
+  font-size: 3vw;
+  margin-top: 4vw;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  color: #F9F9F7;
+}
+
+.fail-prompt {
+  background: rgba(107, 16, 16, 0.664);
+}
+
+.username-title, .password-title {
+  font-size: 2vw;
+}
+
+.username-input, .password-input {
+  height: 3vw;
+  width: 18vw;
+  font-size: 1.75vw;
+  border-style: solid;
+  border-color: #000000;
+  border-width: .25vw;
+  border-radius: .5vw;
+}
+
 .greeting-container, .dropdown-container {
   display: flex;
   justify-content: center;
@@ -63,6 +108,13 @@ header {
   height: 100%;
   margin-left: 1vw;
   margin-right: 1vw;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .pineapple {
@@ -306,7 +358,7 @@ header {
   align-items: center;
 }
 
-.book-button {
+.book-button, .login-button {
   margin-top: 1.5vw;
   color: #F9F9F7;
   height: 3.5vw;
@@ -319,7 +371,7 @@ header {
   border-radius: 5vw;
 }
 
-.book-button:hover {
+.book-button:hover, .login-button:hover {
   background-color: #892D17;
 }
 
