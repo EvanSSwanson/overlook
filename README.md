@@ -60,6 +60,7 @@
 
 ## Sources
   - [MDN](http://developer.mozilla.org/en-US/)
+  - Turing lessons
 
 ## Project Specs
   - The project spec & rubric can be found [here](https://frontend.turing.edu/projects/overlook.html)
