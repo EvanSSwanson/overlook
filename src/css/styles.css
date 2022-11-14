@@ -70,7 +70,7 @@ header {
   width: 9vw;
 }
 
-.central-container, .central-dropdown-container {
+.central-container, .central-dropdown-container, .manipulated-central-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,7 +80,7 @@ header {
   border-radius: .2vw;
 }
 
-.greeting {
+.greeting, .chosen-message, .choose-message {
   background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
   text-align: center;
@@ -92,6 +92,10 @@ header {
   font-size: 3vw;
   margin-top: 4vw;
   color: #F9F9F7;
+}
+
+.chosen-message {
+  margin-top: 2.5vw;
 }
 
 .reminder {
@@ -127,7 +131,7 @@ header {
   color: #000000;
 }
 
-.submit-button {
+.submit-button, .confirm-button, .backtrack-button, .book-another-button {
   margin-left: 1vw;
   height: 2.5vw;
   width: 10vw;
@@ -142,9 +146,21 @@ header {
   color: #F9F9F7;
 }
 
-.submit-button:hover {
+.confirm-button, .backtrack-button, .book-another-button {
+  height: 4.25vw;
+  width: 20vw;
+  font-size: 2vw;
+  margin-bottom: 2vw;
+}
+
+.submit-button:hover, .confirm-button:hover, .backtrack-button:hover, .book-another-button:hover {
   background: rgba(255, 255, 255, 0.758);
   color: #000000;
+}
+
+.confirm-container, .backtrack-container {
+  display: flex;
+  align-items: center;
 }
 
 .home-container, .available-rooms-container {

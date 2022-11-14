@@ -17,6 +17,7 @@ let allBookings;
 let allRooms;
 let currentCustomer;
 let possibleRooms;
+let filteredRooms;
 let pickedRoom;
 
 //API CALLS
@@ -70,6 +71,7 @@ const availableRooms = document.querySelector('.available-rooms');
 const totalBill = document.querySelector('.total-bill');
 const submitButton = document.querySelector('.submit-button');
 const centralDropdownContainer = document.querySelector('.central-dropdown-container');
+const manipulatedCentralContainer = document.querySelector('.manipulated-central-container');
 const vacancy = document.querySelector('.vacancy');
 
 //GLOBAL EVENT LISTENERS
@@ -248,30 +250,26 @@ function convertVacancyDate() {
 function selectRoom(event) {
     const targetId = event.target.id.split('-');
     pickedRoom = possibleRooms.find(room => room.number === parseInt(targetId[1]));
-    centralDropdownContainer.innerHTML = '';
-    centralDropdownContainer.innerHTML = `<h2 class="chosen-message">You have chosen Room ${pickedRoom.number} on ${convertVacancyDate()}</h2>
-    <div class="confirm-container">
-        <p class="confirm-message">Click here to confirm your stay:</p>
+    manipulatedCentralContainer.innerHTML = '';
+    manipulatedCentralContainer.innerHTML = `<h2 class="chosen-message">You have chosen Room ${pickedRoom.number} on ${convertVacancyDate()}</h2>
         <button class="confirm-button">Confirm Reservation</button>
-    </div>
-    <div class="backtrack-container">
-        <p class="backtrack-message">Click here to choose a different date:</p>
-        <button class="backtrack-button">Pick Another Date</button>
-    </div>`
+        <button class="backtrack-button">Pick Another Date</button>`
     const confirmButton = document.querySelector('.confirm-button');
     const backtrackButton = document.querySelector('.backtrack-button');
     confirmButton.addEventListener('click', reserveRoom);
     backtrackButton.addEventListener('click', showDatePicker);
     console.log(possibleRooms);
     console.log(pickedRoom);
+    centralDropdownContainer.classList.add('hidden');
+    manipulatedCentralContainer.classList.remove('hidden');
 };
 
 function reserveRoom() {
     postBooking(currentCustomer, vacancy, pickedRoom);
     //add it
     //if the post returns fine without errors...
-    centralDropdownContainer.innerHTML = '';
-    centralDropdownContainer.innerHTML = `<h2 class="success-message">Success! Room ${pickedRoom.number} will be ready for you on ${convertVacancyDate()}.</h2>
+    manipulatedCentralContainer.innerHTML = '';
+    manipulatedCentralContainer.innerHTML = `<h2 class="success-message">Success! Room ${pickedRoom.number} will be ready for you on ${convertVacancyDate()}.</h2>
         <button class="book-another-button">Book Another Room</button>`
     const bookAnotherButton = document.querySelector('.book-another-button');
     bookAnotherButton.addEventListener('click', showDatePicker);
@@ -285,12 +283,14 @@ function loadDashView() {
 }
 
 function showDatePicker() {
-    centralDropdownContainer.innerHTML = '';
-    centralDropdownContainer.innerHTML = `<h2 class="choose-message">Choose a Date to Find Available Rooms:</h2>
+    manipulatedCentralContainer.innerHTML = '';
+    manipulatedCentralContainer.innerHTML = `<h2 class="choose-message">Choose a Date to Find Available Rooms:</h2>
     <div class="date-picker-container">
         <input type="date" class="vacancy" id="vacancy" name="vacancy">
         <button class="submit-button">Find Rooms</button>
     </div>`
+    manipulatedCentralContainer.classList.add('hidden');
+    centralDropdownContainer.classList.remove('hidden');
 };
 
 //This function below is currently just to keep things straight in my own head. IT WILL NOT BE IN THE FINAL COPY!
@@ -307,8 +307,6 @@ function findFullyBooked() {
     console.log('firstArray: ', firstArray)
 };
 
-
-
 //TOGGLE HIDDEN FUNCTIONS
 function showBookingView() {
     bookingView.classList.remove('hidden');
@@ -322,8 +320,4 @@ function showDashView() {
     dashReturnButton.classList.add('hidden');
     bookingView.classList.add('hidden');
     loginReturnButton.classList.remove('hidden');
-};
-
-function showConfirmationView() {
-
 };
