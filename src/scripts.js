@@ -5,9 +5,6 @@ import Customer from './classes/Customer.js';
 import Room from './classes/Room.js';
 import Booking from './classes/Booking.js';
 
-
-console.log('This is the JavaScript entry file - your code begins here.');
-
 //GLOBAL VARIABLES
 let loginId;
 let customersData;
@@ -245,9 +242,11 @@ function showFilteredRooms(event) {
 
 function renderPossibleBookings() {
     let chosenDate = convertVacancyDate();
-    // if(vacancyMicro < Date.now()) {
-    //    showTooEarlyMessage();
-    // } else {
+    if(vacancyMicro < Date.now()) {
+       showInvalidMessage('future');
+    } else if(chosenDate.includes('N')) {
+        showInvalidMessage('valid');
+    } else {
         const thatDaysBookedRooms = allBookings.reduce((acc, booking) => {
             if(booking.americanDate === chosenDate) {
                 acc.push(booking.roomNumber);
@@ -296,7 +295,7 @@ function renderPossibleBookings() {
         cardButton.forEach(button => {
             button.addEventListener('click', selectRoom)
         });
-    //};
+    };
 };
 
 function convertVacancyDate() {
@@ -340,8 +339,6 @@ function reserveRoom() {
     tempRoom['roomInfo'] = pickedRoom;
     tempRoom['date'] = convertVacancyDate();
     tempRoom['micro'] = vacancyMicro;
-    //add it
-    //if the post returns fine without errors...
     manipulatedCentralContainer.innerHTML = '';
     manipulatedCentralContainer.innerHTML = `<h2 class="success-message">Success! Room ${pickedRoom.number} will be ready for you on ${convertVacancyDate()}.</h2>
         <button class="book-another-button">Book Another Room</button>`
@@ -355,10 +352,10 @@ function loadDashView() {
     showDashView();
 };
 
-function showTooEarlyMessage() {
+function showInvalidMessage(invalid) {
     availableRooms.innerHTML = '';
     manipulatedCentralContainer.innerHTML = '';
-    manipulatedCentralContainer.innerHTML = `<h2 class="too-early-message">Please pick a *future* day</h2>
+    manipulatedCentralContainer.innerHTML = `<h2 class="too-early-message">Please pick a *${invalid}* day</h2>
     <button class="backtrack-button">Pick Another Date</button>`;
     const backtrackButton = document.querySelector('.backtrack-button');
     backtrackButton.addEventListener('click', showDatePicker);
