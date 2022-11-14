@@ -1,14 +1,10 @@
 *{
   box-sizing: border-box;
   font-family: 'Asap Condensed';
-  /* border: 1px;
-  border-style: solid;
-  border-color: #000000; */
 }
 
 body {
   background-color: #F9F9F7;
-  /* background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
   margin: 0;
 }
 
@@ -30,18 +26,68 @@ header {
   color: #F9F9F7;
   font-family: 'Akaya Telivigala';
   font-size: 5vw;
-  margin-right: 4vw;
 }
 
 .login-return-button, .dash-return-button {
   height: 3.5vw;
   width: 16vw;
+  margin-left: 4vw;
   font-size: 1.35vw;
   background-color: #F9F9F7;
   border-style: solid;
   border-color: #000000;
   border-width: .25vw;
   border-radius: 5vw;
+}
+
+.login-return-button:hover, .dash-return-button:hover, .filter-button:hover {
+  background-color: #535353;
+  color: #F9F9F7;
+}
+
+.login-prompt-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mini-pineapple {
+  height: 5vw;
+  width: 5vw;
+}
+
+.login-prompt, .fail-prompt {
+  background: rgba(0, 0, 0, .6);
+  border-radius: 1vw;
+  text-align: center;
+  font-family: 'Akaya Telivigala';
+  border-left: 1vw;
+  border-right: 1vw;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, .001);
+  font-size: 3vw;
+  margin-top: 4vw;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  color: #F9F9F7;
+}
+
+.fail-prompt {
+  background: rgba(107, 16, 16, 0.664);
+}
+
+.username-title, .password-title {
+  font-size: 2vw;
+}
+
+.username-input, .password-input {
+  height: 3vw;
+  width: 18vw;
+  font-size: 1.75vw;
+  border-style: solid;
+  border-color: #000000;
+  border-width: .25vw;
+  border-radius: .5vw;
 }
 
 .greeting-container, .dropdown-container {
@@ -60,12 +106,19 @@ header {
   margin-right: 1vw;
 }
 
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .pineapple {
   height: 9vw;
   width: 9vw;
 }
 
-.central-container, .central-dropdown-container {
+.central-container, .central-dropdown-container, .manipulated-central-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,7 +128,7 @@ header {
   border-radius: .2vw;
 }
 
-.greeting {
+.greeting, .chosen-message, .success-message, .choose-message, .too-early-message, .apology-message {
   background: rgba(0, 0, 0, .6);
   border-radius: 1vw;
   text-align: center;
@@ -87,6 +140,14 @@ header {
   font-size: 3vw;
   margin-top: 4vw;
   color: #F9F9F7;
+}
+
+.apology-message {
+  margin-top: 2vw;
+}
+
+.chosen-message {
+  margin-top: 2.5vw;
 }
 
 .reminder {
@@ -122,7 +183,7 @@ header {
   color: #000000;
 }
 
-.submit-button {
+.submit-button, .confirm-button, .backtrack-button, .book-another-button {
   margin-left: 1vw;
   height: 2.5vw;
   width: 10vw;
@@ -137,9 +198,21 @@ header {
   color: #F9F9F7;
 }
 
-.submit-button:hover {
+.confirm-button, .backtrack-button, .book-another-button {
+  height: 4.25vw;
+  width: 20vw;
+  font-size: 2vw;
+  margin-bottom: 2vw;
+}
+
+.submit-button:hover, .confirm-button:hover, .backtrack-button:hover, .book-another-button:hover {
   background: rgba(255, 255, 255, 0.758);
   color: #000000;
+}
+
+.confirm-container, .backtrack-container {
+  display: flex;
+  align-items: center;
 }
 
 .home-container, .available-rooms-container {
@@ -201,16 +274,25 @@ header {
   align-items: center;
   list-style: none;
   flex-basis: 16%;
-  max-height: 20vw;
+  height:19vw;
   margin: .75vw;
-  font-size: 1vw;
   color: #000000;
   text-align: center;
-  max-width: 26vw;
   border-style: solid;
   border-color: #B8462B;
   border-width: .25vw;
   border-radius: .2vw;
+}
+
+.card-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: none;
 }
 
 .card-top {
@@ -226,6 +308,26 @@ header {
   border-color: #B8462B;
   border-top-width: .5vw;
   border-radius: .2vw;
+}
+
+.booking-card-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 108%;
+  margin-top: -.15vw;
+  padding-top: 0;
+  background-color: #B8462B;
+  color: #F9F9F7;
+  border-top-style: solid;
+  border-color: #B8462B;
+  border-top-width: .5vw;
+  border-radius: .2vw;
+}
+
+.booking-room, .booking-date, .booking-type, .booking-beds, .booking-cost {
+  font-size: 1.1vw;
 }
 
 .booking-room, .booking-date {
@@ -250,7 +352,7 @@ header {
   align-items: center;
 }
 
-.book-button {
+.book-button, .login-button {
   margin-top: 1.5vw;
   color: #F9F9F7;
   height: 3.5vw;
@@ -261,6 +363,10 @@ header {
   border-color: #000000;
   border-width: .25vw;
   border-radius: 5vw;
+}
+
+.book-button:hover, .login-button:hover {
+  background-color: #892D17;
 }
 
 .total-bill {
